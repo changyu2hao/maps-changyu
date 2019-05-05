@@ -41,7 +41,8 @@
                     document.getElementById('map'), {zoom: 10, center: uluru});
                     // The marker, positioned at 
                     google.maps.event.addListener(map, 'click', function (e) {                   
-                    var myLatLng = {lat: e.latLng.lat(), lng: e.latLng.lng()};
+                        var myLatLng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+                        
                     var marker = new google.maps.Marker({
                         position: myLatLng,
                         map: map,
@@ -49,21 +50,7 @@
                         document.getElementById("Hiddenlat").value = e.latLng.lat();
                         document.getElementById("Hiddenlng").value = e.latLng.lng();
                     });
-                    $(document).on("click", ".remove-marker", function(e) {
-        e.preventDefault();
-        var lat = $(this).data("marker-lat");
-        var lng = $(this).data("marker-lng");
-        console.log("deleting marker ", lat, lng);
-        $.each(map.markers, function(index, marker) {
-            var m_lat = marker.getPosition().lat();
-            var m_lng = marker.getPosition().lng();
-            if (m_lat == lat && m_lng == lng) {
-                map.removeMarker(map.markers[index]);
-                return false;
-            }
-        });
 
-    });
 
                     //document.getElementById('insert'), {zoom: 10, center: uluru});
                     //string strsearch
@@ -75,6 +62,7 @@
                     //var marker = new google.maps.Marker({ position: uluru, map: map });
                     
                 }
+
             </script>
             <!--Load the API from the specified URL
             * The async attribute allows the browser to render the page while the API loads
@@ -97,6 +85,9 @@
                     </td>
                     <td>
                     <input id="Hiddenlng" type="hidden" runat="server" />
+                    </td>
+                    <td>
+                    <input id="Hiddendisplay" runat="server" />
                     </td>
                 </tr>
                 <tr>
