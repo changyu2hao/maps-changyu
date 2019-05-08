@@ -37,11 +37,20 @@ public partial class main : System.Web.UI.Page
         cnn.Open();
         MyReader = InsertCommand.ExecuteReader();        
         cnn.Close();
-        string selectsql = "select Players from mymaps.mapdata where Phone='" + this.txphone.Text + "'";
+        string selectsql = "select * from mymaps.mapdata where Phone='"+this.txphone.Text+"'";
         MySqlCommand cmd = new MySqlCommand(selectsql, cnn);
         cnn.Open();
-        MySqlDataReader SelectReader = cmd.ExecuteReader();
-        Hiddendisplay.Value = SelectReader.ToString();
+        MySqlDataReader Selectreader = cmd.ExecuteReader();
+        while (Selectreader.Read())
+        {
+            lblcountPlayers.Value = (string)Selectreader["Players"].ToString();
+            lblcountDate.Value = (string)Selectreader["Date_To_Play"].ToString();
+            lblcountTime.Value = (string)Selectreader["Time_To_Play"].ToString();
+            lblcountPhone.Value = (string)Selectreader["Phone"].ToString();
+            lblcountType.Value = (string)Selectreader["Sports_Type"].ToString();
+        }
+        //MySqlDataReader SelectReader = cmd.ExecuteReader();
+        //Hiddendisplay.Value = SelectReader.ToString();
         //DataTable dt = new DataTable();
         cnn.Close();
 

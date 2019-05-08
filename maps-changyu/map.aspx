@@ -40,16 +40,25 @@
                     var map = new google.maps.Map(
                     document.getElementById('map'), {zoom: 10, center: uluru});
                     // The marker, positioned at 
+                    var infowindow = new google.maps.infowindow({
+                        content:contentstring
+                    })
                     google.maps.event.addListener(map, 'click', function (e) {                   
                         var myLatLng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
-                        
-                    var marker = new google.maps.Marker({
+                        //var Player = document.getElementById('lblcountPlayers').value;
+                        var marker = new google.maps.Marker({
                         position: myLatLng,
                         map: map,
                         });
                         document.getElementById("Hiddenlat").value = e.latLng.lat();
                         document.getElementById("Hiddenlng").value = e.latLng.lng();
+                        
+
                     });
+                    marker.addListener('click', function () {
+                        infowindow.open(map, marker);
+                    });
+
 
 
                     //document.getElementById('insert'), {zoom: 10, center: uluru});
@@ -87,7 +96,11 @@
                     <input id="Hiddenlng" type="hidden" runat="server" />
                     </td>
                     <td>
-                    <input id="Hiddendisplay" runat="server" />
+                    <input id="lblcountPlayers" runat="server" />
+                    <input id="lblcountDate" runat="server" />
+                    <input id="lblcountTime" runat="server" />
+                    <input id="lblcountPhone" runat="server" />
+                    <input id="lblcountType" runat="server" />
                     </td>
                 </tr>
                 <tr>
@@ -148,7 +161,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btnsubmit" runat="server" OnClick="btnsubmit_Click" Text="Submit" />
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <asp:Button ID="btnsubmit" runat="server" OnClick="btnsubmit_Click" Text="Submit" />
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                         </td>
                         <td>
                             <asp:Button ID="btnclose" runat="server" OnClick="btnclose_Click" Text="Close" />
