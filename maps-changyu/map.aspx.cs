@@ -37,22 +37,62 @@ public partial class main : System.Web.UI.Page
         cnn.Open();
         MyReader = InsertCommand.ExecuteReader();        
         cnn.Close();
-        string selectsql = "select * from mymaps.mapdata where Phone='"+this.txphone.Text+"'";
+        //insert data to the database
+        string selectsql = "select Lat from mymaps.mapdata";
         MySqlCommand cmd = new MySqlCommand(selectsql, cnn);
         cnn.Open();
+        List<String> outColumnlat = new List<String>();
         MySqlDataReader Selectreader = cmd.ExecuteReader();
-        while (Selectreader.Read())
+        for (int i = 0; i < Selectreader.FieldCount; i++)
         {
-            lblcountPlayers.Value = (string)Selectreader["Players"].ToString();
-            lblcountDate.Value = (string)Selectreader["Date_To_Play"].ToString();
-            lblcountTime.Value = (string)Selectreader["Time_To_Play"].ToString();
-            lblcountPhone.Value = (string)Selectreader["Phone"].ToString();
-            lblcountType.Value = (string)Selectreader["Sports_Type"].ToString();
+            if (Selectreader.HasRows)
+                while (Selectreader.Read())
+                {
+                    outColumnlat.Add(Selectreader[i].ToString());
+                }
         }
+        foreach(string i in outColumnlat)
+        {
+            //lblcountPlayers.Value= outColumn
+            lblLat.Value = string.Join(" ", outColumnlat);
+        }
+        cnn.Close();
+        string selectsqllng = "select lng from mymaps.mapdata";
+        MySqlCommand cmdlng = new MySqlCommand(selectsqllng, cnn);
+        cnn.Open();
+        List<String> outColumnlng = new List<String>();
+        MySqlDataReader Selectreaderlng = cmdlng.ExecuteReader();
+        for (int i = 0; i < Selectreaderlng.FieldCount; i++)
+        {
+            if(Selectreaderlng.HasRows)
+                while (Selectreaderlng.Read())
+                {
+                    outColumnlng.Add(Selectreaderlng[i].ToString());
+                }
+        }
+        foreach (string i in outColumnlng)
+        {
+            //lblcountPlayers.Value= outColumn
+            lbllng.Value = string.Join(" ", outColumnlng);
+        }
+        cnn.Close();
+
+
+
+        //{
+        //    lblcountPlayers.Value = (string)Selectreader["Players"].ToString();
+        //    lblcountDate.Value = (string)Selectreader["Date_To_Play"].ToString();
+        //    lblcountTime.Value = (string)Selectreader["Time_To_Play"].ToString();
+        //    lblcountPhone.Value = (string)Selectreader["Phone"].ToString();
+        //    lblcountType.Value = (string)Selectreader["Sports_Type"].ToString();
+        //}
+        //select data from database
+
+
         //MySqlDataReader SelectReader = cmd.ExecuteReader();
         //Hiddendisplay.Value = SelectReader.ToString();
         //DataTable dt = new DataTable();
-        cnn.Close();
+
 
     }
 
