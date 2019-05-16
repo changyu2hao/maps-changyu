@@ -36,39 +36,74 @@
             // Initialize and add the map
                 function initMap()
                 {
-                    // The location of Uluru
-                    var uluru = {lat: 45.4255, lng: -75.692};
-                    // The map, centered at Uluru
+                    // The location of Ottawa
+                    var Ottawa = {lat: 45.425533, lng: -75.692482};
+                    // The map, centered at Ottawa
                     var map = new google.maps.Map(
-                    document.getElementById('map'), {zoom: 10, center: uluru});
+                    document.getElementById('map'), {zoom: 10, center: Ottawa});
                     // The marker, positioned at                    
                     //var marker = new google.maps.Marker({
                     //position: uluru,
                     //map: map,
                     //title: 'Uluru (Ayers Rock)'
                     //});
+                    //var markerarray = new Array();
                     var strlat = document.getElementById("lblLat").value;
                     var strlng = document.getElementById("lbllng").value;
-                    //var latarray = new Array();
-                    //var lngarray = new Array();                   
-                    var latarray = strlat.split(" ");
-                    var lngarray = strlng.split(" ");
+                    var strplayers = document.getElementById("inpPlayers").value;
+                    var strdate = document.getElementById("inpDate").value;
+                    var strtime = document.getElementById("inpTime").value;
+                    var strphone = document.getElementById("inpphone").value;
+                    var strtype = document.getElementById("inptype").value;
+                    var latarray = new Array();
+                    var lngarray = new Array();
+                    var playersarray = new Array();
+                    var datearray = new Array();
+                    var timearray = new Array();
+                    var phonearray = new Array();
+                    var typearray = new Array();
+                    latarray = strlat.split(" ");
+                    lngarray = strlng.split(" ");
+                    playersarray = strplayers.split(" ");
+                    datearray = strdate.split(" ");
+                    timearray = strtime.split(" ");
+                    phonearray = strphone.split(" ");
+                    typearray = strtype.split(" ");
 
+
+
+                    //document.getElementById("lblcountType").value = latarray[0];
+                    //document.getElementById("lblcountPhone").value = lngarray[8];
+                     
+                                
                     for (i = 0; i < latarray.length; i++) {
-                        var location = { lat: latarray[i], lng: lngarray[i] };
+                        if (Number(latarray[i]) != 0 && Number(lngarray[i]) != 0) {
+                            var location = { lat: Number(latarray[i]), lng: Number(lngarray[i]) };
                         var marker = new google.maps.Marker({
                         position: location,
                         map: map,
-                    });
+                        });
+                        var infowindow = new google.maps.InfoWindow({
+                            content: "Players Number: " + playersarray[i] + "<br>" + "Date: " + datearray[i] + "<br>" + "Time: " + timearray[i]+"<br>" + "Phone Number: " + phonearray[i]+"<br>" + "Sports Type: " + typearray[i] 
+                        });       
+                        infowindow.open(map,marker);
+                        //markerarray.push(marker);  
+                        }
+                        
                     }
+                    
+                    //for (var i = 0; i < markerarray.length; i++) {
+                    //    infowindow.open(map,markerarray[i]);
+                    //    }
 
                     //document.getElementById(lblcountType) = latarray.join(" "); 
 
-                    var markerarray = new Array();
+                    
                     var marker1 = null;
                     //var infowindow = new google.maps.infowindow({
                     //    content: "Hello world"
                     //});
+                    
                     google.maps.event.addListener(map, 'click', function (e) {                   
                         var myLatLng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
                         //var Player = document.getElementById('lblcountPlayers').value;
@@ -76,36 +111,14 @@
                         position: myLatLng,
                         map: map,
                         });
-                        markerarray.push(marker1);
-                        var infowindow = new google.maps.InfoWindow({
-                        content:"Hello World!"
-                        });
-                        for (var i = 0; i < markerarray.length; i++) {
-                        infowindow.open(map,markerarray[i]);
-                        }
+                        //markerarray.push(marker1);                        
                         
                         document.getElementById("Hiddenlat").value = e.latLng.lat();//get the latitude from asp.net
                         document.getElementById("Hiddenlng").value = e.latLng.lng();//get the longtitude from asp.net
                         //infowindow.open(map, marker);
                         
                     });
-                    //var con = new ActiveXObject("ADODB.Connection"); 
-                    //con.ConnectionString = "DRIVER={MySQL ODBC 5.1 Driver};OPTION=3;SERVER=localhost;User ID=root;Password=hemuyang0421;Database=mysql;Port=3306"; 
-                    ////服务器地址，数据库 账号密码，数据库名，端口 
-                    //con.open; 
-                    //var rs = new ActiveXObject("ADODB.Recordset"); 
-                    //rs.open("select * from mymaps.mapdata", con); 
-                    //while (!rs.eof) { 
-                    //    var u = rs.Fields("Phone");
-                    //    document.getElementById("Hidden1").value = u;
-                    //rs.moveNext; 
-                    //} 
-                    //rs.close(); 
-                    //rs = null; 
-                    //con.close(); 
-                    //con = null; 
-                    
-                    
+                                        
                     
                     //infowindow.open(map, marker);
 
@@ -146,12 +159,14 @@
                     <input id="Hiddenlng" type="hidden" runat="server" />
                     </td><%--put the longtitude here--%>
                     <td>
-                    <input id="lblLat" runat="server" />
-                    <input id="lbllng" runat="server" />
-                    <input id="lblcountTime" runat="server" />
-                    <input id="lblcountPhone" runat="server" />
-                    <input id="lblcountType" runat="server" />
-                    <input id="Players" runat="server" />
+                    <input id="lblLat" type="hidden" runat="server" />
+                    <input id="lbllng" type="hidden" runat="server" />
+                    <input id="inpPlayers" type="hidden" runat="server" />
+                    <input id="inpDate" type="hidden" runat="server" />
+                    <input id="inpTime" type="hidden" runat="server" />
+                    <input id="inpphone" type="hidden" runat="server" />
+                    <input id="inptype" type="hidden" runat="server" />
+       
                     </td>
                 </tr>
                 <tr>
