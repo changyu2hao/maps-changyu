@@ -18,7 +18,7 @@ public partial class main : System.Web.UI.Page
             MySqlConnection cnn;
             connetionString = "server=localhost;database=mymaps;uid=root;pwd=hemuyang0421";
             cnn = new MySqlConnection(connetionString);
-
+            //use the mysql database
 
             string selectsql = "select Lat from mymaps.mapdata";
             MySqlCommand cmd = new MySqlCommand(selectsql, cnn);
@@ -35,11 +35,10 @@ public partial class main : System.Web.UI.Page
             }
             foreach (string i in outColumnlat)
             {
-                //lblcountPlayers.Value= outColumn
                 lblLat.Value = string.Join(" ", outColumnlat);
             }
             cnn.Close();
-
+            //get the latitude from database
 
             string selectsqllng = "select lng from mymaps.mapdata";
             MySqlCommand cmdlng = new MySqlCommand(selectsqllng, cnn);
@@ -56,11 +55,10 @@ public partial class main : System.Web.UI.Page
             }
             foreach (string i in outColumnlng)
             {
-                //lblcountPlayers.Value= outColumn
                 lbllng.Value = string.Join(" ", outColumnlng);
             }
             cnn.Close();
-
+            //get longtitute from mysql database
 
 
             string SelectsqlPlayers = "select Players from mymaps.mapdata";
@@ -78,11 +76,10 @@ public partial class main : System.Web.UI.Page
             }
             foreach (string i in outColumnPlayers)
             {
-                //lblcountPlayers.Value= outColumn
                 inpPlayers.Value = string.Join(" ", outColumnPlayers);
             }
             cnn.Close();
-
+            //get Players number from database
 
 
             string SelectsqDate = "select Date_To_Play from mymaps.mapdata";
@@ -100,11 +97,10 @@ public partial class main : System.Web.UI.Page
             }
             foreach (string i in outColumnDate)
             {
-                //lblcountPlayers.Value= outColumn
                 inpDate.Value = string.Join(" ", outColumnDate);
             }
             cnn.Close();
-
+            //get date from database
 
 
             string SelectsqTime = "select Time_To_Play from mymaps.mapdata";
@@ -122,10 +118,10 @@ public partial class main : System.Web.UI.Page
             }
             foreach (string i in outColumnTime)
             {
-                //lblcountPlayers.Value= outColumn
                 inpTime.Value = string.Join(" ", outColumnTime);
             }
             cnn.Close();
+            //get time from database
 
 
             string SelectsqPhone = "select Phone from mymaps.mapdata";
@@ -143,11 +139,10 @@ public partial class main : System.Web.UI.Page
             }
             foreach (string i in outColumnPhone)
             {
-                //lblcountPlayers.Value= outColumn
                 inpphone.Value = string.Join(" ", outColumnPhone);
             }
             cnn.Close();
-
+            //get get phonenumber from database
 
 
             string SelectsqType = "select Sports_Type from mymaps.mapdata";
@@ -165,10 +160,10 @@ public partial class main : System.Web.UI.Page
             }
             foreach (string i in outColumnType)
             {
-                //lblcountPlayers.Value= outColumn
                 inptype.Value = string.Join(" ", outColumnType);
             }
             cnn.Close();
+            //get sports_type from database
         }
 
 
@@ -195,10 +190,9 @@ public partial class main : System.Web.UI.Page
         cnn.Open();
         MyReader = InsertCommand.ExecuteReader();        
         cnn.Close();
-
-
-
         //insert data to the database
+
+
         string selectsql = "select Lat from mymaps.mapdata";
         MySqlCommand cmd = new MySqlCommand(selectsql, cnn);
         cnn.Open();
@@ -214,11 +208,10 @@ public partial class main : System.Web.UI.Page
         }
         foreach(string i in outColumnlat)
         {
-            //lblcountPlayers.Value= outColumn
             lblLat.Value = string.Join(" ", outColumnlat);
         }
         cnn.Close();
-
+        //get the latitude from database
 
 
         string selectsqllng = "select lng from mymaps.mapdata";
@@ -236,10 +229,10 @@ public partial class main : System.Web.UI.Page
         }
         foreach (string i in outColumnlng)
         {
-            //lblcountPlayers.Value= outColumn
             lbllng.Value = string.Join(" ", outColumnlng);
         }
         cnn.Close();
+        //get longtitute from mysql database
 
 
         string SelectsqlPlayers = "select Players from mymaps.mapdata";
@@ -257,11 +250,10 @@ public partial class main : System.Web.UI.Page
         }
         foreach (string i in outColumnPlayers)
         {
-            //lblcountPlayers.Value= outColumn
             inpPlayers.Value = string.Join(" ", outColumnPlayers);
         }
         cnn.Close();
-
+        //get Players number from database
 
 
         string SelectsqDate = "select Date_To_Play from mymaps.mapdata";
@@ -279,10 +271,11 @@ public partial class main : System.Web.UI.Page
         }
         foreach (string i in outColumnDate)
         {
-            //lblcountPlayers.Value= outColumn
             inpDate.Value = string.Join(" ", outColumnDate);
         }
         cnn.Close();
+        //get date from database
+
 
 
         string SelectsqTime = "select Time_To_Play from mymaps.mapdata";
@@ -300,11 +293,10 @@ public partial class main : System.Web.UI.Page
         }
         foreach (string i in outColumnTime)
         {
-            //lblcountPlayers.Value= outColumn
             inpTime.Value = string.Join(" ", outColumnTime);
         }
         cnn.Close();
-
+        //get time from database
 
 
         string SelectsqPhone = "select Phone from mymaps.mapdata";
@@ -322,11 +314,10 @@ public partial class main : System.Web.UI.Page
         }
         foreach (string i in outColumnPhone)
         {
-            //lblcountPlayers.Value= outColumn
             inpphone.Value = string.Join(" ", outColumnPhone);
         }
         cnn.Close();
-
+        //get phone number from database
 
 
         string SelectsqType = "select Sports_Type from mymaps.mapdata";
@@ -348,21 +339,7 @@ public partial class main : System.Web.UI.Page
             inptype.Value = string.Join(" ", outColumnType);
         }
         cnn.Close();
-        //{
-        //    lblcountPlayers.Value = (string)Selectreader["Players"].ToString();
-        //    lblcountDate.Value = (string)Selectreader["Date_To_Play"].ToString();
-        //    lblcountTime.Value = (string)Selectreader["Time_To_Play"].ToString();
-        //    lblcountPhone.Value = (string)Selectreader["Phone"].ToString();
-        //    lblcountType.Value = (string)Selectreader["Sports_Type"].ToString();
-        //}
-        //select data from database
-
-
-        //MySqlDataReader SelectReader = cmd.ExecuteReader();
-        //Hiddendisplay.Value = SelectReader.ToString();
-        //DataTable dt = new DataTable();
-
-
+        //get sports_type from database
     }
 
     protected void btnclose_Click(object sender, EventArgs e)

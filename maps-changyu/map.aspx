@@ -110,19 +110,8 @@
                         //markerarray.push(marker);  
                         }                        
                     }
-                    
-                    //for (var i = 0; i < markerarray.length; i++) {
-                    //    infowindow.open(map,markerarray[i]);
-                    //    }
-
-                    //document.getElementById(lblcountType) = latarray.join(" "); 
-
-                    
                     var marker1 = null;
-                    //var infowindow = new google.maps.infowindow({
-                    //    content: "Hello world"
-                    //});
-                    
+                    var markerarray = new Array();
                     google.maps.event.addListener(map, 'click', function (e) {                   
                         var myLatLng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
                         //var Player = document.getElementById('lblcountPlayers').value;
@@ -130,27 +119,18 @@
                         position: myLatLng,
                         map: map,
                         });
-                        //markerarray.push(marker1);                        
-                        
+
+                        markerarray.push(marker1);
+                        if (markerarray.length > 1) {
+                            markerarray[0].setMap(null);
+                            markerarray.splice(0,1);
+                        }
+                        //make there is only one marker when the user click on the map
+
                         document.getElementById("Hiddenlat").value = e.latLng.lat();//get the latitude from asp.net
                         document.getElementById("Hiddenlng").value = e.latLng.lng();//get the longtitude from asp.net
-                        //infowindow.open(map, marker);
-                        
-                    });
-                                        
-                    
-                    //infowindow.open(map, marker);
-
-
-                    //document.getElementById('insert'), {zoom: 10, center: uluru});
-                    //string strsearch
-
-
-                    //var map1 = new google.maps.Map(
-                      //  document.getElementsByName('button vet= "12019"');
-
-                    //var marker = new google.maps.Marker({ position: uluru, map: map });
-                    
+                        //infowindow.open(map, marker);                        
+                    });                                                                                
                 }
                 google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -178,7 +158,7 @@
                     <asp:TextBox ID="txplayers" runat="server"></asp:TextBox>
                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorplayers" runat="server" ControlToValidate="txplayers" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
                         <div class="col-md-3">
-                        <asp:RangeValidator ID="RangeValidatorplayers" runat="server" CssClass="error" ControlToValidate="txplayers" ErrorMessage="Should be larger than 0 and less than 20" MaximumValue="20" MinimumValue="1" Type="Integer"></asp:RangeValidator>
+                        <asp:RangeValidator ID="RangeValidatorplayers" runat="server" CssClass="error" ControlToValidate="txplayers" ErrorMessage="Should be larger than 0 and less than 30" MaximumValue="30" MinimumValue="1" Type="Integer"></asp:RangeValidator>
                             </div>
                     </td>
                 </tr>
