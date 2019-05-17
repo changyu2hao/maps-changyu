@@ -41,7 +41,7 @@
                     <td>
                     <input id="lblLat" type="hidden" runat="server" />
                     <input id="lbllng" type="hidden" runat="server" />
-                    <input id="inpPlayers" runat="server" />
+                    <input id="inpPlayers" type="hidden" runat="server" />
                     <input id="inpDate" type="hidden" runat="server" />
                     <input id="inpTime" type="hidden" runat="server" />
                     <input id="inpphone" type="hidden" runat="server" />
