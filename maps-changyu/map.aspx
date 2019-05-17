@@ -30,6 +30,26 @@
         </head>
         <body>
             <h3>Please choose a place in the map</h3>
+            <table>
+                <tr>
+                    <td>
+                    <input id="Hiddenlat" type="hidden" runat="server" /> 
+                    </td><%--put the latitude here--%>
+                    <td>
+                    <input id="Hiddenlng" type="hidden" runat="server" />
+                    </td><%--put the longtitude here--%>
+                    <td>
+                    <input id="lblLat" type="hidden" runat="server" />
+                    <input id="lbllng" type="hidden" runat="server" />
+                    <input id="inpPlayers" runat="server" />
+                    <input id="inpDate" type="hidden" runat="server" />
+                    <input id="inpTime" type="hidden" runat="server" />
+                    <input id="inpphone" type="hidden" runat="server" />
+                    <input id="inptype" type="hidden" runat="server" />       
+                    </td>
+                </tr>
+            </table>
+            
             <!--The div element for the map -->
             <div id="map"></div>
             <script>
@@ -88,8 +108,7 @@
                         });       
                         infowindow.open(map,marker);
                         //markerarray.push(marker);  
-                        }
-                        
+                        }                        
                     }
                     
                     //for (var i = 0; i < markerarray.length; i++) {
@@ -151,24 +170,7 @@
         <asp:button ID="choosebutton" runat="server" text="choose" OnClick="choosebutton_Click" />
         <asp:Panel id="popup" runat="server" CssClass="popup">
             <table>
-                <tr>
-                    <td>
-                    <input id="Hiddenlat" type="hidden" runat="server" /> 
-                    </td><%--put the latitude here--%>
-                    <td>
-                    <input id="Hiddenlng" type="hidden" runat="server" />
-                    </td><%--put the longtitude here--%>
-                    <td>
-                    <input id="lblLat" type="hidden" runat="server" />
-                    <input id="lbllng" type="hidden" runat="server" />
-                    <input id="inpPlayers" type="hidden" runat="server" />
-                    <input id="inpDate" type="hidden" runat="server" />
-                    <input id="inpTime" type="hidden" runat="server" />
-                    <input id="inpphone" type="hidden" runat="server" />
-                    <input id="inptype" type="hidden" runat="server" />
-       
-                    </td>
-                </tr>
+                
                 <tr>
                     <td>
                     <asp:Label ID="lblplayers" runat="server" Text="Number of Players"></asp:Label>
