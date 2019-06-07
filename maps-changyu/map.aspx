@@ -10,9 +10,9 @@
     <title>Algonquin College</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link href="App_Themes/ACMasterPage_Theme/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="App_Themes/ACMasterPage_Theme/css/Site.css" rel="stylesheet" />
-    <link href="App_Themes/SiteStyles.css" rel="stylesheet" />
+    <link href="App_Theme/ACMasterPage_Theme/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="App_Theme/ACMasterPage_Theme/css/Site.css" rel="stylesheet" />
+    <link href="App_Theme/SiteStyle.css" rel="stylesheet" />
     </head>
 
     <form id="form1" runat="server">
@@ -30,6 +30,7 @@
         </head>
         <body>
             <h3>Please choose a place in the map</h3>
+            <br />
             <table>
                 <tr>
                     <td>
@@ -45,11 +46,10 @@
                     <input id="inpDate" type="hidden" runat="server" />
                     <input id="inpTime" type="hidden" runat="server" />
                     <input id="inpphone" type="hidden" runat="server" />
-                    <input id="inptype" type="hidden" runat="server" />       
+                    <input id="inptype" type="hidden" runat="server" />
                     </td>
                 </tr>
             </table>
-            
             <!--The div element for the map -->
             <div id="map"></div>
             <script>
@@ -89,6 +89,7 @@
                     timearray = strtime.split(" ");
                     phonearray = strphone.split(" ");
                     typearray = strtype.split(" ");
+                    var marker1array = new Array();
 
 
 
@@ -97,30 +98,58 @@
                      
                                 
                     for (i = 0; i < latarray.length; i++) {
+
                         if (Number(latarray[i]) != 0 && Number(lngarray[i]) != 0) {
                             var location = { lat: Number(latarray[i]), lng: Number(lngarray[i]) };
-                        var marker = new google.maps.Marker({
-                        position: location,
-                        map: map,
-                        });
-                        var infowindow = new google.maps.InfoWindow({
-                            content: "Players Number: " + playersarray[i] + "<br>" + "Date: " + datearray[i] + "<br>" + "Time: " + timearray[i]+"<br>" + "Phone Number: " + phonearray[i]+"<br>" + "Sports Type: " + typearray[i] 
-                        });       
-                        infowindow.open(map,marker);
-                        //markerarray.push(marker);  
+                            var marker = new google.maps.Marker({
+                            position: location,
+                            map: map,
+                            });                            
+                            //map.addOverlay(marker);
+                            marker1array.push(marker);
+
+                            //for (j = 0; j < i; j++) {
+                            //    marker1array[j].addListener('click', function (e) {
+                            //        marker1array[j].setMap(null);
+                            //    });
+                            //}
+
+                            var infowindow = new google.maps.InfoWindow({
+                                content: "Players Number: " + playersarray[i] + "<br>" + "Date: " + datearray[i] + "<br>" + "Time: " + timearray[i]+"<br>" + "Phone Number: " + phonearray[i]+"<br>" + "Sports Type: " + typearray[i] 
+                            });       
+                            infowindow.open(map,marker);
+                            //markerarray.push(marker);  
                         }                        
                     }
+        
+                    //for (i = 0; i < latarray.length; i++) {
+                    //    google.maps.event.addListener(marker1array[i], 'click', function (e) {
+                    //        marker1array[i].setMap(null);
+                        
+                    //    });                    
+                        
+                    //}
+                    
+
                     var marker1 = null;
                     var markerarray = new Array();
-                    google.maps.event.addListener(map, 'click', function (e) {                   
+                    google.maps.event.addListener(map, 'click', function (e) {
+
                         var myLatLng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
                         //var Player = document.getElementById('lblcountPlayers').value;
                         marker1 = new google.maps.Marker({
                         position: myLatLng,
                         map: map,
-                        });
+                        });                    
 
                         markerarray.push(marker1);
+
+                        //google.maps.event.addListener(map, 'rightclick', function (e) {     
+                        //    for()
+                        //    if(e.latLng.lat())
+                        //    markerPar.setMap(null);
+                        //});
+
                         if (markerarray.length > 1) {
                             markerarray[0].setMap(null);
                             markerarray.splice(0,1);
@@ -132,6 +161,7 @@
                         //infowindow.open(map, marker);                        
                     });                                                                                
                 }
+
                 google.maps.event.addDomListener(window, 'load', initialize);
 
             </script>
@@ -141,30 +171,29 @@
             * The callback parameter executes the initMap() function
             -->
             <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuV-FcM5NgxbpEdoLvpQF58HN9aH82-gI&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuV-FcM5NgxbpEdoLvpQF58HN9aH82-gI&libraries=places&callback=initMap">
             </script>
         </body>
         </asp:Panel>
         <br />
         <br />
-        <asp:button ID="choosebutton" runat="server" text="choose" OnClick="choosebutton_Click" />
-        <asp:Panel id="popup" runat="server" CssClass="popup">
-            <table>
-                
+        <asp:button ID="choosebutton" runat="server" text="choose" OnClick="choosebutton_Click" CssClass="button"/>
+        <asp:Panel id="popup" runat="server" CssClass="popup1">
+            <table>                
                 <tr>
                     <td>
-                    <asp:Label ID="lblplayers" runat="server" Text="Number of Players"></asp:Label>
+                    <asp:Label ID="lblplayers" runat="server" Text="Number of Players:" CssClass="label"></asp:Label>
                     &nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="txplayers" runat="server"></asp:TextBox>
                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorplayers" runat="server" ControlToValidate="txplayers" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
-                        <div class="col-md-3">
                         <asp:RangeValidator ID="RangeValidatorplayers" runat="server" CssClass="error" ControlToValidate="txplayers" ErrorMessage="Should be larger than 0 and less than 30" MaximumValue="30" MinimumValue="1" Type="Integer"></asp:RangeValidator>
-                            </div>
+                        <br />
                     </td>
                 </tr>
+                
                  <tr>
                     <td>
-                    <asp:Label ID="Labeldate" runat="server" Text="Date(mm/dd)"></asp:Label>
+                    <asp:Label ID="Labeldate" runat="server" Text="Date(mm/dd):" CssClass="label"></asp:Label>
                     &nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="txtdate" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidatordate" runat="server" ControlToValidate="txtdate" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
@@ -175,7 +204,7 @@
                 </tr>
                 <tr>
                     <td>
-                    <asp:Label ID="lbltime" runat="server" Text="Time"></asp:Label>
+                    <asp:Label ID="lbltime" runat="server" Text="Time:" CssClass="label"></asp:Label>
                     &nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="txtime" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidatortime" runat="server" ControlToValidate="txtime" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
@@ -189,7 +218,7 @@
                     <br />
                     <tr>
                         <td>
-                            <asp:Label ID="lblphone" runat="server" Text="Phone Number"></asp:Label>
+                            <asp:Label ID="lblphone" runat="server" Text="Phone Number:" CssClass="label"></asp:Label>
                             &nbsp;&nbsp;&nbsp;
                             <asp:TextBox ID="txphone" runat="server"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidatorphone" runat="server" ControlToValidate="txphone" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
@@ -199,7 +228,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label ID="lblSports" runat="server" Text="Sports"></asp:Label>
+                            <asp:Label ID="lblSports" runat="server" Text="Sports:" CssClass="label"></asp:Label>
                             &nbsp;&nbsp;&nbsp;
                             <asp:TextBox ID="txSports" runat="server"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidatorsports" runat="server" ControlToValidate="txSports" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
@@ -211,12 +240,12 @@
                         <td>
                             <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>--%>
-                                    <asp:Button ID="btnsubmit" runat="server" OnClick="btnsubmit_Click" Text="Submit" />
+                                    <asp:Button ID="btnsubmit" runat="server" OnClick="btnsubmit_Click" Text="Submit" CssClass="submit"/>
                               <%--  </ContentTemplate>
                             </asp:UpdatePanel>--%>
                         </td>
                         <td>
-                            <asp:Button ID="btnclose" runat="server" OnClick="btnclose_Click" Text="Close" />
+                            <asp:Button ID="btnclose" runat="server" OnClick="btnclose_Click" Text="Close" CssClass="closebutton"/>
                         </td>
                     </tr>
                 </caption>
