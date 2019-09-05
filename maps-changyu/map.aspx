@@ -134,7 +134,14 @@
                     var marker1 = null;
                     var markerarray = new Array();
                     google.maps.event.addListener(map, 'click', function (e) {
-
+                        //for (let j = 0; j < marker1array.length; j++) {
+                        //    if (e.latLng.lat() == marker1array[j].latLng.lat() && e.latLng.lng() == marker1array[j].latLng.lng()) {
+                        //        marker1array[j].setMap(null);
+                        //    }
+                        //    else {
+                        //        continue;
+                        //    }
+                        //}
                         var myLatLng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
                         //var Player = document.getElementById('lblcountPlayers').value;
                         marker1 = new google.maps.Marker({
@@ -159,7 +166,17 @@
                         document.getElementById("Hiddenlat").value = e.latLng.lat();//get the latitude from asp.net
                         document.getElementById("Hiddenlng").value = e.latLng.lng();//get the longtitude from asp.net
                         //infowindow.open(map, marker);                        
-                    });                                                                                
+                    });     
+                    //google.maps.event.addListener(map, "rightclick", function (point) {
+                    //    for (let j = 0; j < marker1array.length; j++) {
+                    //        if (e.latLng.lat() == marker1array[j].latLng.lat() && e.latLng.lng() == marker1array[j].latLng.lng()) {
+                    //            delMarker(marker1array[j])
+                    //        }
+                    //        else {
+                    //            continue;
+                    //        }
+                    //    }
+                    //});
                 }
 
                 google.maps.event.addDomListener(window, 'load', initialize);

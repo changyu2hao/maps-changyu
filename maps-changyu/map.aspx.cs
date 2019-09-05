@@ -16,7 +16,7 @@ public partial class main : System.Web.UI.Page
         {
             string connetionString = null;
             MySqlConnection cnn;
-            connetionString = "server=localhost;database=mymaps;uid=root;pwd=hemuyang0421";
+            connetionString = "server=35.203.11.34;database=mymaps;uid=root;pwd=hemuyang0421";
             cnn = new MySqlConnection(connetionString);
             //use the mysql database
 
@@ -180,7 +180,7 @@ public partial class main : System.Web.UI.Page
     {
         string connetionString = null;
         MySqlConnection cnn;
-        connetionString = "server=localhost;database=mymaps;uid=root;pwd=hemuyang0421";
+        connetionString = "server=35.203.11.34;database=mymaps;uid=root;pwd=hemuyang0421";
         cnn = new MySqlConnection(connetionString);
         DateTime dt = DateTime.Parse(this.txtime.Text);
         string format = "HH:mm";
