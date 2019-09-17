@@ -9,3 +9,4 @@ Step 2: Pick a place in the map and click "choose" button to input your informat
 
 Step 3: After fill out the form, Click submit. You Can easily see that all the information you input will shows on the location you chose.
 
+![Screenshot (92)](https://user-images.githubusercontent.com/43207918/65003122-007f2400-d8c5-11e9-958a-d37333ca2a26.png)
