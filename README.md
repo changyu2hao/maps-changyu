@@ -1,4 +1,6 @@
 # maps-changyu
+###Do you think it's hard to get enough people to play sports with you. This app will let others know the information about your activity, and contact you if they want to join you.
+
 Step1: When you open this project, the first thing come to the page is a google map and "choose" button.
 
 ![Screenshot (90)](https://user-images.githubusercontent.com/43207918/65002748-433ffc80-d8c3-11e9-8968-6d1ce90da866.png)
