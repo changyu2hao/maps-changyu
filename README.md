@@ -14,3 +14,5 @@ Step 3: After fill out the form, Click "submit" button. You can easily see that 
 ![Screenshot (92)](https://user-images.githubusercontent.com/43207918/65003122-007f2400-d8c5-11e9-958a-d37333ca2a26.png)
 
 Step 4: You can also set up another activity. It will also show in the map.
+
+![Screenshot (111)](https://user-images.githubusercontent.com/43207918/65294324-44c02d80-db2c-11e9-806b-69c12d21e4b2.png)
