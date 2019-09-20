@@ -12,3 +12,5 @@ Step 2: Pick a place in the map and click "choose" button. A form will pop up!
 Step 3: After fill out the form, Click "submit" button. You can easily see that all the information will be showed on the location you have chose.
 
 ![Screenshot (92)](https://user-images.githubusercontent.com/43207918/65003122-007f2400-d8c5-11e9-958a-d37333ca2a26.png)
+
+Step 4: You can also set up another activity. It will also show in the map.
