@@ -5,7 +5,7 @@ Step1: When you open this APP, the first thing that you see is a google map and 
 
 ![Screenshot (90)](https://user-images.githubusercontent.com/43207918/65002748-433ffc80-d8c3-11e9-8968-6d1ce90da866.png)
 
-Step 2: Pick a place in the map and click "choose" button. A form will pop up!
+Step 2: Pick a place in the map and click "choose" button. A pop up window will be displayed.
 
 ![Screenshot (91)](https://user-images.githubusercontent.com/43207918/65002973-51424d00-d8c4-11e9-9b8b-1d43b0465774.png)
 
