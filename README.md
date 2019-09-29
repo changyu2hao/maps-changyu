@@ -3,7 +3,7 @@
 
 Step1: When you open this APP, the first thing that you see is a google map and a "choose" button.
 
-![Screenshot (90)](https://user-images.githubusercontent.com/43207918/65002748-433ffc80-d8c3-11e9-8968-6d1ce90da866.png)
+![Screenshot (117)](https://user-images.githubusercontent.com/43207918/65840179-a11d0d00-e2e3-11e9-9601-86b8ed5f9adc.png)
 
 Step 2: Pick a place in the map and click the "choose" button. A pop up window will be displayed.
 
