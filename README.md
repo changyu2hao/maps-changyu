@@ -11,7 +11,7 @@ Step 2: Pick a place in the map and click the "choose" button. A pop up window w
 
 Step 3: After filling in the details in the pop up window, click the "submit" button. All the information you have specified will be shown on the location.
 
-![Screenshot (92)](https://user-images.githubusercontent.com/43207918/65003122-007f2400-d8c5-11e9-958a-d37333ca2a26.png)
+![Screenshot (120)](https://user-images.githubusercontent.com/43207918/65840224-5354d480-e2e4-11e9-9656-33b8d7166fd5.png)
 
 Step 4: You can also set up another activity. It will be shown in the map.
 
