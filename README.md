@@ -15,4 +15,5 @@ Step 3: After filling in the details in the pop up window, click the "submit" bu
 
 Step 4: You can also set up another activity. It will be shown in the map.
 
-![Screenshot (111)](https://user-images.githubusercontent.com/43207918/65294324-44c02d80-db2c-11e9-806b-69c12d21e4b2.png)
+![Screenshot (121)](https://user-images.githubusercontent.com/43207918/65840252-ae86c700-e2e4-11e9-94f8-b3671f25a40d.png)
+
