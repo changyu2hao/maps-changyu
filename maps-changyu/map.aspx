@@ -101,7 +101,6 @@
                             });       
                             infowindow.open(map, marker); 
                             //retrieve all the information from the array and put them in the infowindow 
-                            //haha
                         }                        
                     }
                     //This for loop output all the information to the google map
