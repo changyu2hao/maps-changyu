@@ -18,7 +18,6 @@
     <form id="form1" runat="server">
         <asp:scriptmanager runat="server"></asp:scriptmanager>
         <asp:Panel id="mymap" runat="server">
-        <head>
             <link href="App_Themes/SiteStyles.css" rel="stylesheet" />
             <style>
             /* Set the size of the div element that contains the map */
@@ -27,26 +26,24 @@
                 width: 100%;  /* The width is the width of the web page */
                  }
             </style>
-        </head>
-        <body>
-            <h1>Please choose a place in the map</h1>
+            <h1>Please choose a place in the map</h1> <%--Give a title for this website--%>
             <br />
             <table>
                 <tr>
                     <td>
-                    <input id="Hiddenlat" type="hidden" runat="server" /> 
-                    </td><%--put the latitude here--%>
+                    <input id="Hiddenlat" type="hidden" runat="server" /> <%--put the latitude here--%>
+                    </td>
                     <td>
-                    <input id="Hiddenlng" type="hidden" runat="server" />
-                    </td><%--put the longtitude here--%>
+                    <input id="Hiddenlng" type="hidden" runat="server" /><%--put the longtitude here--%>
+                    </td>
                     <td>
-                    <input id="lblLat" type="hidden" runat="server" />
-                    <input id="lbllng" type="hidden" runat="server" />
-                    <input id="inpPlayers" type="hidden" runat="server" />
-                    <input id="inpDate" type="hidden" runat="server" />
-                    <input id="inpTime" type="hidden" runat="server" />
-                    <input id="inpphone" type="hidden" runat="server" />
-                    <input id="inptype" type="hidden" runat="server" />
+                    <input id="lblLat" type="hidden" runat="server" /><%--put the latitude here from database--%>
+                    <input id="lbllng" type="hidden" runat="server" /><%--put the longititude here from database--%>
+                    <input id="inpPlayers" type="hidden" runat="server" /><%--put the number for players here from database--%>
+                    <input id="inpDate" type="hidden" runat="server" /><%--put the Date here from database--%>
+                    <input id="inpTime" type="hidden" runat="server" /><%--put the Time here from database--%>
+                    <input id="inpphone" type="hidden" runat="server" /><%--put the Phone number here from database--%>
+                    <input id="inptype" type="hidden" runat="server" /><%--put the sports here from database--%>
                         <%--Put the data from database to these hidden box, and pass it to the map--%>
                     </td>
                 </tr>
@@ -62,14 +59,7 @@
                     var Ottawa = {lat: 45.425533, lng: -75.692482};
                     // The map, centered at Ottawa
                     var map = new google.maps.Map(
-                    document.getElementById('map'), {zoom: 10, center: Ottawa});
-                    // The marker, positioned at                    
-                    //var marker = new google.maps.Marker({
-                    //position: uluru,
-                    //map: map,
-                    //title: 'Uluru (Ayers Rock)'
-                    //});
-                    //var markerarray = new Array();
+                    document.getElementById('map'), {zoom: 10, center: Ottawa});                                     
                     var strlat = document.getElementById("lblLat").value;
                     var strlng = document.getElementById("lbllng").value;
                     var strplayers = document.getElementById("inpPlayers").value;
@@ -77,6 +67,7 @@
                     var strtime = document.getElementById("inpTime").value;
                     var strphone = document.getElementById("inpphone").value;
                     var strtype = document.getElementById("inptype").value;
+                    //Put the value from the hidden input boxes to the variables
                     var latarray = new Array();
                     var lngarray = new Array();
                     var playersarray = new Array();
@@ -91,14 +82,9 @@
                     timearray = strtime.split(" ");
                     phonearray = strphone.split(" ");
                     typearray = strtype.split(" ");
-                    var marker1array = new Array();
                     //Convert these string to array, in order to put them in the for loop
-
-
-                    //document.getElementById("lblcountType").value = latarray[0];
-                    //document.getElementById("lblcountPhone").value = lngarray[8];
-                     
-                                
+                    var marker1array = new Array();
+                                                   
                     for (i = 0; i < latarray.length; i++) {
 
                         if (Number(latarray[i]) != 0 && Number(lngarray[i]) != 0) {
@@ -106,76 +92,45 @@
                             var marker = new google.maps.Marker({
                             position: location,
                             map: map,
-                            });                            
-                            //map.addOverlay(marker);
-                            marker1array.push(marker);
-
-                            //for (j = 0; j < i; j++) {
-                            //    marker1array[j].addListener('click', function (e) {
-                            //        marker1array[j].setMap(null);
-                            //    });
-                            //}
+                            });
+                            //retrieve the longitudes and latitudes from the array and put all of them on the map 
+                            marker1array.push(marker);                            
 
                             var infowindow = new google.maps.InfoWindow({
                                 content: "Players Number: " + playersarray[i] + "<br>" + "Date: " + datearray[i] + "<br>" + "Time: " + timearray[i]+"<br>" + "Phone Number: " + phonearray[i]+"<br>" + "Sports Type: " + typearray[i] 
                             });       
-                            infowindow.open(map,marker);
-                            //markerarray.push(marker);  
+                            infowindow.open(map, marker); 
+                            //retrieve all the information from the array and put them in the infowindow 
                         }                        
                     }
                     //This for loop output all the information to the google map
-        
-                    //for (i = 0; i < latarray.length; i++) {
-                    //    google.maps.event.addListener(marker1array[i], 'click', function (e) {
-                    //        marker1array[i].setMap(null);
-                        
-                    //    });                    
-                        
-                    //}
-                    
-
+                            
                     var marker1 = null;
                     var markerarray = new Array();
                     google.maps.event.addListener(map, 'click', function (e) {
                         var myLatLng = { lat: e.latLng.lat(), lng: e.latLng.lng() };
-                        //var Player = document.getElementById('lblcountPlayers').value;
+                        
                         marker1 = new google.maps.Marker({
                         position: myLatLng,
                         map: map,
                         });                    
-
-                        markerarray.push(marker1);
-
-                        //google.maps.event.addListener(map, 'rightclick', function (e) {     
-                        //    for()
-                        //    if(e.latLng.lat())
-                        //    markerPar.setMap(null);
-                        //});
+                        //When the user click the map, a marker will show up
+                        markerarray.push(marker1);                        
 
                         if (markerarray.length > 1) {
                             markerarray[0].setMap(null);
                             markerarray.splice(0,1);
                         }
-                        //make there is only one marker when the user click on the map
+                        //make there is only one marker existing when the user click on the map
 
                         document.getElementById("Hiddenlat").value = e.latLng.lat();//get the latitude from asp.net
                         document.getElementById("Hiddenlng").value = e.latLng.lng();//get the longtitude from asp.net
                         //infowindow.open(map, marker);                        
-                    });     
-                    //google.maps.event.addListener(map, "rightclick", function (point) {
-                    //    for (let j = 0; j < marker1array.length; j++) {
-                    //        if (e.latLng.lat() == marker1array[j].latLng.lat() && e.latLng.lng() == marker1array[j].latLng.lng()) {
-                    //            delMarker(marker1array[j])
-                    //        }
-                    //        else {
-                    //            continue;
-                    //        }
-                    //    }
-                    //});
+                    });                         
                 }
 
                 google.maps.event.addDomListener(window, 'load', initialize);
-
+                //initialize the map
             </script>
             <!--Load the API from the specified URL
             * The async attribute allows the browser to render the page while the API loads
@@ -183,13 +138,22 @@
             * The callback parameter executes the initMap() function
             -->
             <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuV-FcM5NgxbpEdoLvpQF58HN9aH82-gI&libraries=places&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuV-FcM5NgxbpEdoLvpQF58HN9aH82-gI&libraries=places&callback=initMap"><%--Use the API from Google Cloud to get the map--%>
             </script>
-        </body>
         </asp:Panel>
         <br />
         <br />
-        <asp:button ID="choosebutton" runat="server" text="choose" OnClick="choosebutton_Click" CssClass="button"/>
+        <asp:button ID="choosebutton" runat="server" text="choose" OnClick="choosebutton_Click" CssClass="button" style="margin-left:47%"/>
+        <br />
+        <br />
+        <br />
+        <footer style="background-color:darkgray">
+
+            <div class="text-center py-2">© Changyu Huang &nbsp
+            <a href="mailto: huan0212@algonquinlive.com"> Send me email</a>
+            </div>
+
+        </footer>
         <asp:Panel id="popup" runat="server" CssClass="popup1">
             <table>                
                 <tr>
@@ -197,8 +161,8 @@
                     <asp:Label ID="lblplayers" runat="server" Text="Number of Players:" CssClass="label"></asp:Label>
                     &nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="txplayers" runat="server"></asp:TextBox>
-                       <asp:RequiredFieldValidator ID="RequiredFieldValidatorplayers" runat="server" ControlToValidate="txplayers" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
-                        <asp:RangeValidator ID="RangeValidatorplayers" runat="server" CssClass="error" ControlToValidate="txplayers" ErrorMessage="Should be larger than 0 and less than 30" MaximumValue="30" MinimumValue="1" Type="Integer"></asp:RangeValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorplayers" runat="server" ControlToValidate="txplayers" CssClass="error" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:RangeValidator ID="RangeValidatorplayers" runat="server" CssClass="error" ControlToValidate="txplayers" ErrorMessage="Should be larger than 0 and less than 30" MaximumValue="30" MinimumValue="1" Type="Integer"></asp:RangeValidator>
                         <br />
                     </td>
                 </tr>
@@ -208,7 +172,7 @@
                     <asp:Label ID="Labeldate" runat="server" Text="Date(mm/dd):" CssClass="label"></asp:Label>
                     &nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="txtdate" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatordate" runat="server" ControlToValidate="txtdate" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatordate" runat="server" ControlToValidate="txtdate" CssClass="error" Display="Dynamic"></asp:RequiredFieldValidator>
                     <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtenderdate" runat="server" TargetControlID="txtdate" MaskType="Date" Mask="99/99" MessageValidatorTip="true" UserDateFormat="None" UserTimeFormat="None" InputDirection="RightToLeft" ErrorTooltipEnabled="true" ></ajaxToolkit:MaskedEditExtender>
                     <br />
                     <br />
@@ -219,7 +183,7 @@
                     <asp:Label ID="lbltime" runat="server" Text="Time:" CssClass="label"></asp:Label>
                     &nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="txtime" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidatortime" runat="server" ControlToValidate="txtime" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatortime" runat="server" ControlToValidate="txtime" CssClass="error" Display="Dynamic"></asp:RequiredFieldValidator>
                     <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtendertime" runat="server" TargetControlID="txtime" Mask="99:99" MaskType="Time" CultureName="en-us" MessageValidatorTip="true"></ajaxToolkit:MaskedEditExtender>
                     <br />
                     <br />
@@ -233,7 +197,7 @@
                             <asp:Label ID="lblphone" runat="server" Text="Phone Number:" CssClass="label"></asp:Label>
                             &nbsp;&nbsp;&nbsp;
                             <asp:TextBox ID="txphone" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorphone" runat="server" ControlToValidate="txphone" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorphone" runat="server" ControlToValidate="txphone" CssClass="error" Display="Dynamic"></asp:RequiredFieldValidator>
                             <br />
                             <br />
                         </td>
@@ -243,18 +207,15 @@
                             <asp:Label ID="lblSports" runat="server" Text="Sports:" CssClass="label"></asp:Label>
                             &nbsp;&nbsp;&nbsp;
                             <asp:TextBox ID="txSports" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorsports" runat="server" ControlToValidate="txSports" CssClass="error" Display="Dynamic" ErrorMessage="Required!"></asp:RequiredFieldValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorsports" runat="server" ControlToValidate="txSports" CssClass="error" Display="Dynamic"></asp:RequiredFieldValidator>
                             <br />
                             <br />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                <ContentTemplate>--%>
-                                    <asp:Button ID="btnsubmit" runat="server" OnClick="btnsubmit_Click" Text="Submit" CssClass="submit"/>
-                              <%--  </ContentTemplate>
-                            </asp:UpdatePanel>--%>
+                            <asp:Button ID="btnsubmit" runat="server" OnClick="btnsubmit_Click" Text="Submit" CssClass="submit"/>
+                                    
                         </td>
                         <td>
                             <asp:Button ID="btnclose" runat="server" OnClick="btnclose_Click" Text="Close" CssClass="closebutton"/>
@@ -263,6 +224,6 @@
                 </caption>
             </table>
     </asp:Panel>
-        <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderplayers" TargetControlID="choosebutton" CancelControlID="btnclose" PopupControlID="popup" runat="server"></ajaxToolkit:ModalPopupExtender>
+        <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderplayers" TargetControlID="choosebutton" CancelControlID="btnclose" PopupControlID="popup" runat="server"></ajaxToolkit:ModalPopupExtender><%--When user click the "Choose" button, the pop up window will show up--%>
     </form>
 </html>

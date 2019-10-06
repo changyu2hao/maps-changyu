@@ -338,6 +338,11 @@ public partial class main : System.Web.UI.Page
         }
         cnn.Close();
         //get sports_type from database
+        txplayers.Text = "";
+        txtime.Text = "";
+        txphone.Text = "";
+        txSports.Text = "";
+        //Clean all the input box after the page post back
     }
 
     protected void btnclose_Click(object sender, EventArgs e)
