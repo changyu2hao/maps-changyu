@@ -3,7 +3,7 @@
 Do you think it's hard to get enough people to play sports with you? This app will let others know the information about your activity, and contact you if they want to join you.
 
 # What it does
-A tool to save information and show information at google map. Basically used Google Maps API and Google Cloud Database.
+A tool to save information and show information at Google Map. Basically used Google Maps API and Google Cloud Database.
 
 # Steps to use it
 * When you open this APP, the first thing that you see is a google map and a "choose" button.
